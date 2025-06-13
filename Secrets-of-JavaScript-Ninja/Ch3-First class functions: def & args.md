@@ -43,11 +43,13 @@ objects in javascript possess certain capabilities.
 
 In JS, functions possess all the capabilities of objects and treated like any other objects in the language.
 
+```note
 function ninjaFun(){}; - created via literals
 
 var ninjaFun = function(){}; - assigns new func to a variable
 ninjaArray.push(function(){}); - adds a new func to an array
 ninja.data = function(){}; - assigns a new func as a property of another object
+```
 
 - Passed as an argument to another function
   ```note
@@ -129,3 +131,101 @@ Callbacks helps here instead of us letting to know what values go before other v
 We will give sort algorithm access to this function as a callback
 
 if callback returns positive number - reverse it, negative - if not, 0 - equal.
+
+### Fun with functions as objects
+
+`Storing Functions:` Storing functions in a collection allows us to easily manage related functions.
+
+Ex: Callbacks are stored in a collection when an event occurs
+
+`Challenge:` We can't determine which is new function and should be added and which is not, bcoz we don't want any duplicates as single event would result in multiple calls to the same callback.
+
+`Naive sol`: Storing functions in an array, loop through the array and check for the duplicates.
+
+By tacking a property onto a function,
+we can keep track of it. In that way, we can be sure
+that our function has been added only once.
+
+`Self memoization functions:` It is the process of building a function that is capable of storing its previously computer result.
+
+It means whenever a function computes its result, we store the result alongside the function arguments, in this way whenever another invocation occurs for the same set of arguments, we can return the previously stored result, instead of calculating anew.
+
+```note
+`Usage:` 1.While performing calculations for animations.
+2.Searching data that doesn't change that often.
+3.Any time consuming math.
+```
+
+### Defining Functions: 4 ways
+
+- `Function Declaration & function expressions: `function myFun(){ return 1;}
+
+- `Arrow Functions:` often called as lambda functions, with less syntactic clutter
+
+  - myArg => myArg\*2
+
+- `Function constructors:` dynamically constructs a new function from a string that's also generated dynamically
+
+  - new Function('a', 'b', 'return a + b')
+
+- `Generator Functions:` Unlike normal functions, can be exited and reentered later in the application execution, while keeping the values of the variables across these re-entrances.
+  - function\* myGen(){ yield 1; }
+
+**The way in which a func-
+tion is defined significantly influences when the function is available to be invoked
+and how it behaves, as well as on which object the function can be invoked.**
+
+### Function declarations & function expression:
+
+The function declaration starts on its own.
+
+```note
+function rashmika() {
+return "rashmika here";
+}
+```
+
+Function defined within another functions:
+
+```note
+function ninja() {
+function hiddenNinja() {
+return "ninja here";
+}
+return hiddenNinja();
+}
+```
+
+### Function expressions:
+
+functions that are always part of another statement.
+
+Ex:as the right side of function expression or as an argument to another function or as a function return value
+
+Since functions are first class objects, they can be treated like any other expressions.
+
+```note
+Number literals:
+var a = 3;
+myFunction(4);
+
+We can use function literals in the same location as like literals:
+var a = function() {};
+myFunction(function(){});
+```
+
+**Function declarations are separate statements but can be contained within the body of another function , in contrast function expressions are always part of other statements**
+
+**Function name is mandatory in function declaration(coz theu stand on their own) whereas optional in function expressions.(if a function expression is assigned to a variable, we can use that variable to invoke the function)**
+
+var doNothing = function(){};
+doNothing();
+
+Or, if it’s an argument to another function, we can invoke it within that function
+through the matching parameter name:
+
+function doSomething(action) {
+
+action();
+
+}
