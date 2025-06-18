@@ -116,14 +116,16 @@ Event handlers are functions that we want executed whenever a particular event o
 
 - **Using built in addEventListener method** :
 
+```note
   document.body.eventListener("mousemove", function(){
   var second = document.getElementById("second);
   addMessage(second, "Event:mousemove");
   })
+```
 
-  - uses eventListener method on HTML element by specifind type of event and event handler function
+- uses eventListener method on HTML element by specifind type of event and event handler function
 
-  ### Exercises
+### Exercises
 
 - **1 What are the two phases in the lifecycle of a client-side web application?**
 

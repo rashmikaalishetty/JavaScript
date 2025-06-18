@@ -36,8 +36,11 @@ objects in javascript possess certain capabilities.
   ```
 
 - Objects possess properties that can be dynamically created and assigned
-  - var ninja = {};
+
+```note
+    var ninja = {};
     ninja.name = "Rashmika";
+```
 
 ### Functions as first class objects
 
@@ -77,6 +80,8 @@ ninjaFunc.name = "Rashmika";
 **Functions are objects with just additional capability of being invoked, they must be called or invoked in order to perform an action.**
 
 ### Callback functions:
+
+Callback is the function that are passed as an argument to another function.
 
 We're establishing the function that other code will later 'callback' at an appropriate point of execution.
 
@@ -216,16 +221,68 @@ myFunction(function(){});
 
 **Function declarations are separate statements but can be contained within the body of another function , in contrast function expressions are always part of other statements**
 
-**Function name is mandatory in function declaration(coz theu stand on their own) whereas optional in function expressions.(if a function expression is assigned to a variable, we can use that variable to invoke the function)**
+**Function name is mandatory in function declaration(coz they stand on their own) whereas optional in function expressions.(if a function expression is assigned to a variable, we can use that variable to invoke the function)**
 
+```note
 var doNothing = function(){};
 doNothing();
+```
 
 Or, if it’s an argument to another function, we can invoke it within that function
 through the matching parameter name:
 
+```note
 function doSomething(action) {
-
 action();
-
 }
+```
+
+### Arrow Functions:
+
+They are syntactic sugar(easy to read and write) and simplification of function expressions.
+
+they are `ES6 addition` to the JS standard
+
+The callback function expression sent to the sort method of the array object, callback is invoked by JS engine.
+
+```note
+var values = [0,3,1,2,3];
+values.sort(function(value1,value2){
+  return value1 - value2;
+});
+```
+
+With Arrow Function
+
+```note
+var values = [0,3,1,2,3];
+values.sort((value1,value2) => value1-value2);
+```
+
+There's no function keyword, braces or the return statement, it simply states here's a function takes 2 arguments and returns their difference.
+
+**=> fat arrow operator - defines an arrow function**
+
+```note
+In arrow function, if
+single parameter - optional parentheses
+no or multiple parameters - mandatory parentheses
+```
+
+### Arguments & Function parameters
+
+`Parameter`: It is the variable that we list as part of the function definition.
+
+`Argument`: It is the variable that we pass to the function when we invoke it.
+
+When a list of arguments is supplied as a part of a function invocation, these argu-
+ments are assigned to the parameters in the function definition in the order specified.
+
+**If we have a different number of arguments than parameters, no error is raised.**
+
+```note
+practice ("Yoshi", "sword", "shadow sword", "katana");  //excess argument katana is not assigned to any parameter
+function practice (ninja, weapon, technique) { … }
+practice ("Yoshi"); // undefined is assigned to parameter weapon & technique.
+
+```
